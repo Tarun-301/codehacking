@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\UsersRequest;
+use App\Models\User;
+use App\Models\Role;
 
 class AdminUsersController extends Controller
 {
@@ -13,7 +16,9 @@ class AdminUsersController extends Controller
      */
     public function index()
     {
-        return view('admin/users/index');
+        $users=User::all();
+        $roles=Role::all();
+        return view('admin/users/index', compact('users','roles'));
     }
 
     /**
@@ -23,7 +28,10 @@ class AdminUsersController extends Controller
      */
     public function create()
     {
-        //
+        //in below pluck method data will collect in array. The first parameter will be display item and second parameter will be value.
+        $roles=Role::pluck('name','id')->all();
+        return view('admin/users/create', compact('roles'));
+
     }
 
     /**
@@ -32,9 +40,11 @@ class AdminUsersController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(UsersRequest $request)
     {
-        //
+        $test=User::create($request->all());
+        return view('admin/users/index');
+        // return $request->all();
     }
 
     /**
