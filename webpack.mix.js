@@ -1,3 +1,4 @@
+const { styles } = require('laravel-mix');
 const mix = require('laravel-mix');
 
 /*
@@ -11,6 +12,48 @@ const mix = require('laravel-mix');
  |
  */
 
-mix.js('resources/js/app.js', 'public/js')
-    .sass('resources/sass/app.scss', 'public/css')
-    .sourceMaps();
+mix. js('resources/js/app.js', 'public/js')
+.sass('resources/sass/app.scss', 'public/css')
+
+.styles([
+
+    'resources/css/libs/blog-post.css',
+    'resources/css/libs/bootstrap.css',
+    'resources/css/libs/font-awesome.css',
+    'resources/css/libs/metisMenu.css',
+    'resources/css/sb-admin-2.css'
+    
+    
+
+],'public/css/libs.css')
+
+.scripts([
+
+    'resources/js/libs/jquery.js',
+    'resources/js/libs/bootstrap.js',
+    'resources/js/libs/metisMenu.js',
+    'resources/js/libs/sb-admin-2.js',
+    'resources/js/libs/scripts.js'
+
+], 'public/js/libs.js')
+.sourceMaps();
+
+
+//       styles([
+//          'libs/blog-post.css',
+//          'libs/bootstrap.css',
+//          'libs/font-awesome.css',
+//          'libs/metisMenu.css',
+//          'sb-admin-2.css'
+//      ],'./public/css/libs.css')
+
+//      .scripts([
+
+//         'libs/jquery.js',
+//          'libs/bootstrap.js',
+//          'libs/scripts.js',
+//          'libs/metisMenu.js',
+//          'sb-admin-2.js'
+//      ],'./public/js/libs.js')
+
+    
