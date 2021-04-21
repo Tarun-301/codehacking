@@ -46,12 +46,15 @@ class User extends Authenticatable
 
     public function roles()
     {
-       return $this->belongsTo('App\Models\Role');
+        //return $this->belongsTo('App\Models\Role');
+
+        //for showing data from another table here forign id also pass as parameter. In below line Eg: role_id pass as parameter to show data on views.
+        return $this->belongsTo('App\Models\Role','role_id');
     }
 
     public function photos()
     {
-        return $this->belongsTo('App\Models\Photo');
+        return $this->belongsTo('App\Models\Photo', 'photo_id');
     }
     
 }
