@@ -8,6 +8,7 @@ use App\Http\Requests\UsersEditRequest;
 use App\Models\User;
 use App\Models\Role;
 use App\Models\Photo;
+use Illuminate\Support\Facades\Session;
 
 class AdminUsersController extends Controller
 {
@@ -21,7 +22,7 @@ class AdminUsersController extends Controller
         $users=User::all();
         //$roles=Role::all();
         // return view('admin/users/index', compact('users','roles'));
-        return view('admin/users/index', compact('users',));
+        return view('admin/users/index', compact('users'));
     }
 
     /**
@@ -59,6 +60,7 @@ class AdminUsersController extends Controller
             $input['photo_id'] = $photo->id;
         }
         User::create($input);
+        Session::flash('msg-store-user', 'New user has been cerated.');
         return redirect('/admin/users');
 
 
@@ -117,6 +119,7 @@ class AdminUsersController extends Controller
         }
 
         $user->update($input);
+        Session::flash('msg-update-user', 'User detail has been updated.');
         return redirect('/admin/users');
 
         // return $request->all();
@@ -130,6 +133,12 @@ class AdminUsersController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user=User::findOrFail($id);
+        //unlink(public_path().-------) method is used to delete file fro directory
+        unlink(public_path().$user->photos->file);
+        $user->delete();
+        
+        Session::flash('msg-delete-user','The user has been deleted.');
+        return redirect('/admin/users');
     }
 }

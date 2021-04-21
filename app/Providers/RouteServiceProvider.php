@@ -17,7 +17,8 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @var string
      */
-    public const HOME = '/home';
+    //in below by default setting was public const HOME = '/home'. Now I have changed according to project. 
+    public const HOME = '/admin';
 
     /**
      * The controller namespace for the application.

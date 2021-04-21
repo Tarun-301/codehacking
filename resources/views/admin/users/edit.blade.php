@@ -56,12 +56,22 @@
 
 
    <div class="form-group">
-      {!! Form::submit('Update User', ['class'=>'btn btn-primary']) !!}
+      {!! Form::submit('Update User', ['class'=>'btn btn-primary col-sm-6']) !!}
    </div>
 
  {!! Form::close() !!}
+
+ {!! Form::model($user,['method'=>'DELETE', 'action'=> ['App\Http\Controllers\AdminUsersController@destroy', $user->id],'files'=>true]) !!}
+
+   <div class="form-group">
+      {!! Form::submit('Delete User', ['class'=>'btn btn-danger col-sm-6']) !!}
+   </div>
+ {!! Form::close() !!}
+
  </div>
  </div>
+
+
 
  <div class="row">
  @include('includes.form_error')

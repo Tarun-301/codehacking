@@ -26,6 +26,8 @@ class LoginController extends Controller
      *
      * @var string
      */
+
+    //below statement redirect route service provider, where after login by default view page setting present.
     protected $redirectTo = RouteServiceProvider::HOME;
 
     /**
